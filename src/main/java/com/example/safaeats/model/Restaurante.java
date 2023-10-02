@@ -1,0 +1,38 @@
+package com.example.safaeats.model;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+
+import java.time.LocalDate;
+import java.util.Set;
+
+@Entity
+@Table(name = "restaurantes")
+public class Restaurante {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "nombre_restaurante")
+    private String nombre;
+
+    @Column(name = "direccion")
+    private String direccion;
+
+    @Column(name = "max_comensales")
+    private Integer maxComensales;
+
+    @Column(name = "fecha_fundacion")
+    private LocalDate fechaFundacion;
+
+    @OneToMany(mappedBy = "restaurante" , fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Set<Producto> productos;
+
+
+
+
+
+}
