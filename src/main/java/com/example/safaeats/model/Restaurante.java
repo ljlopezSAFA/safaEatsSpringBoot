@@ -1,6 +1,7 @@
 package com.example.safaeats.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
@@ -8,6 +9,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "restaurante", schema = "safaeats", catalog = "postgres")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(exclude = {"productos"})
 public class Restaurante {
 
     @Id

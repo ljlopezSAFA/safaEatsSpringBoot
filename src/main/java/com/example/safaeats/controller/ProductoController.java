@@ -1,5 +1,6 @@
 package com.example.safaeats.controller;
 
+import com.example.safaeats.dto.CrearProductoDTO;
 import com.example.safaeats.dto.ProductoDTO;
 import com.example.safaeats.model.Producto;
 import com.example.safaeats.service.ProductoService;
@@ -17,13 +18,13 @@ public class ProductoController {
 
 
 @GetMapping(value = "/listar")
-public List<Producto> listarProductos(){
+public List<ProductoDTO> listarProductos(){
     return productoService.listarProductos();
 }
 
 
 @PostMapping(value = "/crear")
-public Producto crearProducto(@RequestBody ProductoDTO productoDTO){
+public Producto crearProducto(@RequestBody CrearProductoDTO productoDTO){
     return productoService.crearProducto(productoDTO);
 }
 

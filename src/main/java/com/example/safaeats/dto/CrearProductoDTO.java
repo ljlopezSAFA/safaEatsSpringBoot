@@ -1,10 +1,9 @@
 package com.example.safaeats.dto;
 
 import lombok.Data;
-import lombok.NonNull;
 
 @Data
-public class ProductoDTO {
+public class CrearProductoDTO {
 
     private Integer id;
 
@@ -14,6 +13,6 @@ public class ProductoDTO {
 
     private Double precio;
 
-    private RestauranteDTO restauranteDTO;
+    private Integer id_restaurante;
 
 }
