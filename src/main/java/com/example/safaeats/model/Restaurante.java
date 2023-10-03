@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name = "restaurantes")
+@Table(name = "restaurante", schema = "safaeats", catalog = "postgres")
 public class Restaurante {
 
     @Id
@@ -15,7 +15,7 @@ public class Restaurante {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "nombre_restaurante")
+    @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "direccion")
