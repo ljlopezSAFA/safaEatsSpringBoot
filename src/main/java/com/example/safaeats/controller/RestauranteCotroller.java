@@ -1,7 +1,6 @@
 package com.example.safaeats.controller;
 
 import com.example.safaeats.dto.RestauranteDTO;
-import com.example.safaeats.model.Restaurante;
 import com.example.safaeats.service.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

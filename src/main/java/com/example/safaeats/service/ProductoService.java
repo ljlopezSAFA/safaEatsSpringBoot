@@ -1,20 +1,22 @@
 package com.example.safaeats.service;
 
 
+import com.example.safaeats.converter.ProductoMapper;
 import com.example.safaeats.dto.CrearProductoDTO;
 import com.example.safaeats.dto.ProductoDTO;
-import com.example.safaeats.dto.RestauranteDTO;
 import com.example.safaeats.model.Producto;
 import com.example.safaeats.model.Restaurante;
 import com.example.safaeats.repository.ProductoRepository;
 import com.example.safaeats.repository.RestauranteRepository;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Getter
 public class ProductoService {
 
     @Autowired
@@ -22,6 +24,8 @@ public class ProductoService {
 
     @Autowired
     private RestauranteRepository restauranteRepository;
+
+    private ProductoMapper productoMapper;
 
 
     /**
@@ -32,27 +36,7 @@ public class ProductoService {
     public List<ProductoDTO> listarProductos() {
 
         List<Producto> listaProductos = productoRepository.findAll();
-        List<ProductoDTO> productoDTOS = new ArrayList<>();
-
-        for( Producto p : listaProductos){
-            ProductoDTO dto = new ProductoDTO();
-            dto.setId(p.getId());
-            dto.setNombre(p.getNombre());
-            dto.setDescripcion(p.getDescripcion());
-            dto.setPrecio(p.getPrecio());
-
-            RestauranteDTO resDTO = new RestauranteDTO();
-            resDTO.setId(p.getRestaurante().getId());
-            resDTO.setNombre(p.getRestaurante().getNombre());
-            resDTO.setMax_comensales(p.getRestaurante().getMaxComensales());
-            resDTO.setDireccion(p.getRestaurante().getDireccion());
-
-            dto.setRestauranteDTO(resDTO);
-            productoDTOS.add(dto);
-        }
-
-
-        return productoDTOS;
+        return listaProductos.stream().map(p-> productoMapper.toDTO(p)).collect(Collectors.toList());
     }
 
 
