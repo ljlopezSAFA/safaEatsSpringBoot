@@ -1,5 +1,6 @@
 package com.example.safaeats.model;
 
+import com.example.safaeats.model.enums.TipoRestaurante;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
@@ -36,6 +37,10 @@ public class Restaurante {
     @OneToMany(mappedBy = "restaurante" , fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Producto> productos;
+
+    @Column(name = "tipo")
+    @Enumerated(EnumType.ORDINAL)
+    private TipoRestaurante tipo;
 
 
 
