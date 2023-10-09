@@ -5,11 +5,19 @@ import com.example.safaeats.model.Restaurante;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+import java.util.List;
+
+@Mapper(componentModel = "spring")
 public interface RestauranteMapper {
 
+    Restaurante toEntity(RestauranteDTO dto);
+
     @Mapping(target = "max_comensales" , source = "maxComensales")
-    RestauranteDTO restauranteToRestauranteDTO(Restaurante restaurante);
+    RestauranteDTO toDTO(Restaurante entity);
+
+    List<Restaurante> toEntity(List<RestauranteDTO> dto);
+
+    List<RestauranteDTO> toDTO(List<Restaurante> entity);
 
 
 

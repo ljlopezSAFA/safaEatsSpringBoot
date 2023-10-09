@@ -25,6 +25,7 @@ public class ProductoService {
     @Autowired
     private RestauranteRepository restauranteRepository;
 
+    @Autowired
     private ProductoMapper productoMapper;
 
 
@@ -34,9 +35,7 @@ public class ProductoService {
      * @return
      */
     public List<ProductoDTO> listarProductos() {
-
-        List<Producto> listaProductos = productoRepository.findAll();
-        return listaProductos.stream().map(p-> productoMapper.toDTO(p)).collect(Collectors.toList());
+        return productoMapper.toDTO(productoRepository.findAll());
     }
 
 

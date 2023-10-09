@@ -1,27 +1,22 @@
 package com.example.safaeats.converter;
 
 import com.example.safaeats.dto.ProductoDTO;
-import com.example.safaeats.dto.RestauranteDTO;
 import com.example.safaeats.model.Producto;
-import com.example.safaeats.model.Restaurante;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ProductoMapper {
 
-    RestauranteMapper restauranteMapper = Mappers.getMapper(RestauranteMapper.class);
 
-    @Mapping(source = "restaurante", target = "restauranteDTO", qualifiedByName = "conversorRestauranteDTO")
-    ProductoDTO toDTO(Producto producto);
+    Producto toEntity(ProductoDTO dto);
 
+    ProductoDTO toDTO(Producto entity);
 
-    @Named("conversorRestauranteDTO")
-    private RestauranteDTO conversorRestauranteDTO(Restaurante restaurante){
-        return restauranteMapper.restauranteToRestauranteDTO(restaurante);
-    }
+    List<Producto> toEntity(List<ProductoDTO> dto);
+
+    List<ProductoDTO> toDTO(List<Producto> entity);
 
 
 }

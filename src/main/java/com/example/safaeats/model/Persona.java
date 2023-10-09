@@ -26,6 +26,9 @@ public class Persona {
     @Column(name = "apellidos")
     private String apellidos;
 
+    @Column(name = "dni")
+    private String dni;
+
     @Column(name ="fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
