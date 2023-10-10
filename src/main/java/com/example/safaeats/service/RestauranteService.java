@@ -24,6 +24,10 @@ public class RestauranteService {
         return listRestaurantes ;
     }
 
+    public Restaurante getById(Integer id){
+        return restauranteRepository.findById(id).orElse(null);
+    }
+
 
 
     private RestauranteDTO convertir(Restaurante restaurante){

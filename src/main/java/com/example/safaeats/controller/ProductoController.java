@@ -24,8 +24,8 @@ public List<ProductoDTO> listarProductos(){
 
 
 @PostMapping(value = "/crear")
-public Producto crearProducto(@RequestBody CrearProductoDTO productoDTO){
-    return productoService.crearProducto(productoDTO);
+public ProductoDTO crearProducto(@RequestBody ProductoDTO dto){
+    return productoService.crearProducto(dto);
 }
 
 @PutMapping(value = "/modificar")

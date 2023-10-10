@@ -39,22 +39,8 @@ public class ProductoService {
     }
 
 
-    public Producto crearProducto(CrearProductoDTO productoDTO){
-        Producto nuevoProducto = new Producto();
-        nuevoProducto.setNombre(productoDTO.getNombre());
-        nuevoProducto.setDescripcion(productoDTO.getDescripcion());
-        nuevoProducto.setPrecio(productoDTO.getPrecio());
-
-        Restaurante restaurante = restauranteRepository.findById(productoDTO.getId_restaurante()).orElse(null);
-
-        if(restaurante == null){
-            return null;
-
-        }else{
-            nuevoProducto.setRestaurante(restaurante);
-            Producto productoCreado = productoRepository.save(nuevoProducto);
-            return productoCreado;
-        }
+    public ProductoDTO crearProducto(ProductoDTO productoDTO){
+        return productoMapper.toDTO(productoRepository.save(productoMapper.toEntity(productoDTO)));
     }
 
     public Producto modificarProducto(ProductoDTO productoDTO){

@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface RestauranteMapper {
 
+    @Mapping(source = "max_comensales" , target = "maxComensales")
     Restaurante toEntity(RestauranteDTO dto);
 
     @Mapping(target = "max_comensales" , source = "maxComensales")
