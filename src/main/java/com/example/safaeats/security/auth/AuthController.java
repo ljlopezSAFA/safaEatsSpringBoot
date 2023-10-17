@@ -20,12 +20,12 @@ public class AuthController {
     private AuthenticationService authenticationService;
 
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public AuthenticationResponseDTO register(@RequestBody UsuarioDTO usuarioDTO){
         return  authenticationService.register(usuarioDTO);
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public AuthenticationResponseDTO register(@RequestBody LoginDTO loginDTO){
         return authenticationService.login(loginDTO);
     }
