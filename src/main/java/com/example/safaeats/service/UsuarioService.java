@@ -1,6 +1,8 @@
 package com.example.safaeats.service;
 
 
+import com.example.safaeats.converter.UsuarioMapper;
+import com.example.safaeats.dto.UsuarioDTO;
 import com.example.safaeats.model.Usuario;
 import com.example.safaeats.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +17,26 @@ public class UsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private UsuarioMapper usuarioMapper;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return usuarioRepository.findTopByUsername(username).orElseThrow(()-> new UsernameNotFoundException("Usuario no encontrado"));
+    }
 
-        Usuario usuario = usuarioRepository.findTopByUsername(username);
+    public UsuarioDTO getByUsername(String username) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepository.findTopByUsername(username).orElse(null);
 
-        if (usuario == null) {
-            throw new UsernameNotFoundException(username);
+        if (usuario!=null){
+            return usuarioMapper.toDTO(usuario);
+        }else{
+            throw  new UsernameNotFoundException("Usuario no encontrado");
         }
 
-        return usuario;
+    }
+
+    public UsuarioDTO save(UsuarioDTO usuarioDTO){
+        return usuarioMapper.toDTO(usuarioRepository.save(usuarioMapper.toEntity(usuarioDTO)));
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+@Entity
 @Table(name = "usuario", schema = "safaeats", catalog = "postgres")
 @Getter
 @Setter
@@ -28,6 +29,7 @@ public class Usuario implements UserDetails {
     private String password;
 
     @Column(name = "rol")
+    @Enumerated(EnumType.ORDINAL)
     private Rol rol;
 
     @OneToOne(fetch = FetchType.LAZY)
