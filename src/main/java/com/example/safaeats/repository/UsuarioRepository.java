@@ -11,4 +11,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     Optional<Usuario> findTopByUsername(String username);
 
+    Boolean existsByUsernameAndPassword(String username, String password);
+
 }

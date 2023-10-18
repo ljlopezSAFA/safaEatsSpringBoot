@@ -6,9 +6,9 @@ import com.example.safaeats.dto.UsuarioDTO;
 import com.example.safaeats.model.Usuario;
 import com.example.safaeats.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,8 +20,11 @@ public class UsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioMapper usuarioMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public Usuario loadUserByUsername(String username) throws UsernameNotFoundException {
         return usuarioRepository.findTopByUsername(username).orElseThrow(()-> new UsernameNotFoundException("Usuario no encontrado"));
     }
 
@@ -38,5 +41,10 @@ public class UsuarioService implements UserDetailsService {
 
     public UsuarioDTO save(UsuarioDTO usuarioDTO){
         return usuarioMapper.toDTO(usuarioRepository.save(usuarioMapper.toEntity(usuarioDTO)));
+    }
+
+    public Boolean existByCredentials(String username, String password){
+        Usuario usuario = usuarioRepository.findTopByUsername(username).orElse(null);
+        return usuario != null  && passwordEncoder.matches(password,usuario.getPassword());
     }
 }

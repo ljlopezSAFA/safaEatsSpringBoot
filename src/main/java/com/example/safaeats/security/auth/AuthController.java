@@ -27,6 +27,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public AuthenticationResponseDTO register(@RequestBody LoginDTO loginDTO){
-        return authenticationService.login(loginDTO);
+        if(authenticationService.verifyPassword(loginDTO)){
+            return authenticationService.login(loginDTO);
+        }else{
+            return AuthenticationResponseDTO.builder().message("Invalid credentials").build();
+        }
     }
 }

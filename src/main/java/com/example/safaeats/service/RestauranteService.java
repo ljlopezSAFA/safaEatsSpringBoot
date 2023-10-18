@@ -36,7 +36,7 @@ public class RestauranteService {
         restauranteDTO.setNombre(restaurante.getNombre());
         restauranteDTO.setMax_comensales(restaurante.getMaxComensales());
         restauranteDTO.setDireccion(restaurante.getDireccion());
-        restauranteDTO.setTipoRestaurante(restaurante.getTipo());
+        restauranteDTO.setTipo(restaurante.getTipo());
         return  restauranteDTO;
     }
 

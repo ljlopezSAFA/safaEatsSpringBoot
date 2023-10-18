@@ -27,7 +27,7 @@ public class JwtService{
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody().getSubject();
     }
 
@@ -41,7 +41,7 @@ public class JwtService{
         return generateToken(new HashMap<>(),usuario);
     }
 
-    public boolean isTokenValid(String token, UserDetails usuario){
+    public boolean isTokenValid(String token, Usuario usuario){
         final String username = extractUsername(token);
         return (username.equals(usuario.getUsername())) && !isTokenExpired(token);
 
@@ -63,7 +63,7 @@ public class JwtService{
                 .parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 

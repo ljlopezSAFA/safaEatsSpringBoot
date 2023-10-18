@@ -10,7 +10,7 @@ public class RestauranteDTO {
     private String nombre;
     private String direccion;
     private Integer max_comensales;
-    private TipoRestaurante tipoRestaurante;
+    private TipoRestaurante tipo;
 
 
 }

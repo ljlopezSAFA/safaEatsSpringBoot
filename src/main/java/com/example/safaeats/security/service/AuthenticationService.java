@@ -57,6 +57,12 @@ public class AuthenticationService {
         return  AuthenticationResponseDTO
                 .builder()
                 .token(token)
+                .message("Login success")
                 .build();
+    }
+
+    public boolean verifyPassword(LoginDTO loginDTO){
+        return usuarioService.existByCredentials(loginDTO.getUsername(),loginDTO.getPassword());
+
     }
 }
