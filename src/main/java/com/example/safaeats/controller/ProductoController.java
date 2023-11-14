@@ -4,6 +4,7 @@ import com.example.safaeats.dto.CrearProductoDTO;
 import com.example.safaeats.dto.ProductoDTO;
 import com.example.safaeats.model.Producto;
 import com.example.safaeats.service.ProductoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping(path = "/productos")
+@SecurityRequirement(name = "Bearer Authentication")
 public class ProductoController {
 
     @Autowired
